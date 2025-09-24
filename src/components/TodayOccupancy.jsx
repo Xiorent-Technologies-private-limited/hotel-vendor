@@ -2,7 +2,6 @@ import React from "react";
 
 const TodayOccupancy = ({ 
   percentage = 60, 
-  size = 150, 
   strokeWidth = 12, 
   color = "#ef4444", 
   backgroundColor = "#fecaca",
@@ -10,18 +9,19 @@ const TodayOccupancy = ({
   textColor = "#ef4444",
   animated = true 
 }) => {
+  // We’ll calculate size dynamically from container
+  const size = 150; 
   const radius = (size - strokeWidth) / 2;
   const circumference = Math.PI * radius; // Half circle
   const strokeDasharray = circumference;
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
-    <div className="relative inline-flex items-center justify-center">
+    <div className="relative inline-flex items-center justify-center w-32 sm:w-40 md:w-48 lg:w-56">
       <svg
-        width={size}
-        height={size / 2 + strokeWidth / 2 + 15}
-        className="overflow-visible"
+        className="w-full h-auto overflow-visible"
         viewBox={`0 0 ${size} ${size / 2 + strokeWidth / 2 + 15}`}
+        preserveAspectRatio="xMidYMid meet"
       >
         {/* Background Arc */}
         <path
@@ -48,8 +48,8 @@ const TodayOccupancy = ({
       {/* Center Text */}
       {showText && (
         <div 
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center font-bold"
-          style={{ color: textColor, fontSize: '32px' }}
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl"
+          style={{ color: textColor }}
         >
           {percentage}%
         </div>

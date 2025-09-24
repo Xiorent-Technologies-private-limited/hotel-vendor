@@ -32,14 +32,14 @@ const SettingProfile = () => {
   };
 
   return (
-   <div className="w-full min-h-screen min-w-full bg-white flex justify-center items-start">
+    <div className="w-full min-h-screen bg-white flex justify-center items-start p-4 sm:p-6">
       {/* Form Container */}
-      <div className="w-full max-w-4xl bg-white p-10 rounded-lg pl-[50px]">
+      <div className="w-full max-w-4xl bg-white p-6 sm:p-10 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-gray-800 mb-8">Your Profile</h2>
 
         <div className="space-y-6">
           {/* Profile Photo Upload */}
-          <div className="mb-8">
+          <div className="flex flex-col sm:flex-row items-center gap-4 mb-8">
             <div className="w-24 h-24 border-2 border-dashed border-red-400 rounded-xl flex flex-col items-center justify-center bg-gray-50">
               <svg
                 className="w-8 h-8 text-gray-400 mb-1"
@@ -54,16 +54,21 @@ const SettingProfile = () => {
                   d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                 />
               </svg>
-              <span className="text-xs text-gray-500 text-center">
+              <span className="text-xs text-center text-gray-500">
                 Upload your photo
               </span>
             </div>
+            <p className="text-sm text-gray-500">
+              Profile photo should be square, 200x200px recommended.
+            </p>
           </div>
 
           {/* Form Fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-gray-700 font-medium mb-2">Full name</label>
+              <label className="block text-gray-700 font-medium mb-2">
+                Full name
+              </label>
               <input
                 type="text"
                 name="fullName"
@@ -75,7 +80,9 @@ const SettingProfile = () => {
             </div>
 
             <div>
-              <label className="block text-gray-700 font-medium mb-2">Email</label>
+              <label className="block text-gray-700 font-medium mb-2">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -87,7 +94,9 @@ const SettingProfile = () => {
             </div>
 
             <div>
-              <label className="block text-gray-700 font-medium mb-2">Username</label>
+              <label className="block text-gray-700 font-medium mb-2">
+                Username
+              </label>
               <input
                 type="text"
                 name="username"
@@ -99,7 +108,9 @@ const SettingProfile = () => {
             </div>
 
             <div>
-              <label className="block text-gray-700 font-medium mb-2">Phone number</label>
+              <label className="block text-gray-700 font-medium mb-2">
+                Phone number
+              </label>
               <input
                 type="tel"
                 name="phoneNumber"
@@ -125,16 +136,16 @@ const SettingProfile = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 pt-6">
+          <div className="flex flex-col sm:flex-row gap-4 pt-6">
             <button
               onClick={handleUpdateProfile}
-              className="bg-red-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+              className="bg-red-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors w-full sm:w-auto"
             >
               Update Profile
             </button>
             <button
               onClick={handleReset}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold px-8 py-3 rounded-lg transition-colors"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold px-8 py-3 rounded-lg transition-colors w-full sm:w-auto"
             >
               Reset
             </button>

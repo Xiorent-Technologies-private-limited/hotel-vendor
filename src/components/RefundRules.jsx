@@ -46,7 +46,7 @@ const RefundRules = () => {
     {
       title: "Before Check-in",
       description: (
-        <ul className="list-disc pl-5 space-y-1 ">
+        <ul className="list-disc pl-5 space-y-1">
           <li>80% refund if cancelled more than 48 hours before check-in.</li>
           <li>50% refund if cancelled within 24–48 hours before check-in.</li>
           <li>No refund if cancelled within 24 hours of check-in.</li>
@@ -61,28 +61,30 @@ const RefundRules = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-white p-6">
-      <div className="max-w-4xl mx-auto rounded-xl p-6">
+    <div className="w-full min-h-screen bg-gray-50 p-4 sm:p-6">
+      <div className="max-w-4xl mx-auto bg-white rounded-xl p-4 sm:p-6">
+
         {/* Header */}
-        <div className="flex justify-between items-center border-b border-gray-300 pb-3 mb-4">
-          <h1 className="text-xl font-bold text-red-600">Our Refund Rules</h1>
-          <button className="flex items-center text-red-600 hover:text-red-800 text-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-300 pb-3 mb-4">
+          <h1 className="text-xl sm:text-2xl font-bold text-red-600">Our Refund Rules</h1>
+          <button className="flex items-center text-red-600 hover:text-red-800 text-sm mt-2 sm:mt-0">
             <Pencil className="w-4 h-4 mr-1" />
             Edit
           </button>
         </div>
 
         {/* Rules List */}
-        <div className="space-y-4 text-gray-800">
+        <div className="space-y-6">
           {rules.map((rule, index) => (
-            <div key={index}>
-              <h2 className="font-semibold text-gray-900">
+            <div key={index} className="p-4 bg-gray-50 rounded-lg shadow-sm">
+              <h2 className="font-semibold text-gray-900 text-base sm:text-lg">
                 {index + 1}. {rule.title}
               </h2>
-              <div className="text-sm mt-1">{rule.description}</div>
+              <div className="text-sm sm:text-base mt-1 text-gray-700">{rule.description}</div>
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );

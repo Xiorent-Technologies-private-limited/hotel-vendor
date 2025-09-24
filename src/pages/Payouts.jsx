@@ -29,12 +29,12 @@ const payouts = [
 
 function Payouts() {
   return (
-    <div className="w-full min-h-screen p-6 bg-[#f8f5e5]">
+    <div className="w-full min-h-screen p-4 sm:p-6 bg-[#f8f5e5]">
       {/* Grid wrapper */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+
         {/* Vendor Earnings */}
-        <div className="bg-white rounded-2xl shadow-lg p-5 flex flex-col justify-between lg:col-span-2">
+        <div className="bg-white rounded-2xl shadow-lg p-5 flex flex-col lg:col-span-2">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <div>
               <h2 className="text-xl font-bold">Vendor Earnings</h2>
@@ -52,7 +52,7 @@ function Payouts() {
               <FiCalendar /> 20-07-2024
             </div>
           </div>
-          <div className="mt-4 h-40 w-full">
+          <div className="mt-4 h-60 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={lineData}>
                 <XAxis dataKey="name" axisLine={false} tickLine={false} />
@@ -70,55 +70,61 @@ function Payouts() {
         </div>
 
         {/* Upcoming Payouts */}
-        <div className="bg-white rounded-2xl shadow-lg p-5 flex flex-col justify-between overflow-x-auto lg:col-span-2">
-          <div className="flex justify-between items-center">
+        <div className="bg-white rounded-2xl shadow-lg p-5 flex flex-col justify-between overflow-hidden lg:col-span-2">
+          <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold">Upcoming Payouts</h2>
             <button className="p-1 rounded-full hover:bg-gray-100">
               <FiMoreHorizontal size={20} />
             </button>
           </div>
 
-          <div className="mt-4 overflow-x-auto">
-            <table className="min-w-[500px] w-full text-sm sm:text-base">
+          {/* Table view for larger screens */}
+          <div className="hidden sm:block overflow-x-auto">
+            <table className="min-w-full w-full text-sm sm:text-base">
               <thead>
                 <tr className="text-gray-400/70">
-                  <th className="text-left py-2">PAYOUTS</th>
-                  <th className="text-left py-2">DATE</th>
-                  <th className="text-left py-2">AMOUNT</th>
-                  <th className="text-left py-2">STATUS</th>
-                  <th className="text-left py-2"></th>
+                  <th className="py-2 text-left">PAYOUTS</th>
+                  <th className="py-2 text-left">DATE</th>
+                  <th className="py-2 text-left">AMOUNT</th>
+                  <th className="py-2 text-left">STATUS</th>
+                  <th className="py-2"></th>
                 </tr>
               </thead>
               <tbody>
                 {payouts.map((p, i) => (
-                  <tr key={i} className="font-bold text-blue-950">
-                    <td className="py-2 flex gap-2 items-start">
-                      <input
-                        type="checkbox"
-                        checked={p.status === "Paid"}
-                        readOnly
-                        className="accent-red-500 mt-1 w-4 h-4"
-                      />
+                  <tr key={i} className="border-b text-sm sm:text-base">
+                    <td className="py-2 flex gap-2 items-center">
+                      <input type="checkbox" checked={p.status === "Paid"} readOnly className="accent-red-500 w-4 h-4" />
                       {p.name}
                     </td>
-                    <td>{p.date}</td>
-                    <td>{p.amount}</td>
-                    <td>
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs sm:text-sm font-medium ${
-                          p.status === "Paid"
-                            ? "bg-green-100 text-green-600"
-                            : "bg-red-100 text-red-600"
-                        }`}
-                      >
+                    <td className="py-2">{p.date}</td>
+                    <td className="py-2">{p.amount}</td>
+                    <td className="py-2">
+                      <span className={`px-2 py-1 rounded-full text-xs sm:text-sm font-medium ${p.status === "Paid" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
                         {p.status}
                       </span>
                     </td>
-                    <td></td>
+                    <td className="py-2"></td>
                   </tr>
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Card view for mobile */}
+          <div className="sm:hidden flex flex-col gap-4">
+            {payouts.map((p, i) => (
+              <div key={i} className="bg-gray-50 p-4 rounded-lg shadow flex flex-col gap-2">
+                <div className="flex justify-between items-center">
+                  <span className="font-bold">{p.name}</span>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${p.status === "Paid" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
+                    {p.status}
+                  </span>
+                </div>
+                <div className="text-xs text-gray-500">Date: {p.date}</div>
+                <div className="font-semibold">Amount: {p.amount}</div>
+              </div>
+            ))}
           </div>
         </div>
 

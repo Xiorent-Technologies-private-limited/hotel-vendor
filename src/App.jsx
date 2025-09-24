@@ -15,7 +15,8 @@ function App() {
 
 
     <BrowserRouter>
-    <div className="bg-[#f8f5e5] w-full h-full p-8 max-w-8xl min-w-[calc(80%-2rem)]">
+    <div className="bg-[#f8f5e5] w-full min-h-screen p-4 sm:p-6 md:p-8 max-w-full md:max-w-8xl mx-auto">
+
       <Header />
       <div className="flex justify-start" >
       <Sidebar />

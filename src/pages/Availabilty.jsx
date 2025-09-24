@@ -52,9 +52,10 @@ function Availabilty() {
   ];
 
   return (
-    <div className="w-full p-4 sm:p-6">
+    <div className="w-full p-4 sm:p-6 md:p-8">
+      
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
         <h2 className="text-2xl sm:text-3xl text-red-500 font-semibold">Rooms</h2>
         <button className="bg-red-500 text-white px-4 py-2 rounded-xl flex gap-2 items-center text-sm sm:text-base">
           <FaCalendar />
@@ -65,7 +66,7 @@ function Availabilty() {
       {/* Room Types Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {roomTypes.map((room) => (
-          <div key={room.id} className="rounded-lg p-4 shadow-lg bg-white">
+          <div key={room.id} className="rounded-lg p-4 shadow-lg bg-white flex flex-col">
             {room.deals > 0 && (
               <div className="text-green-600 font-bold bg-emerald-300/20 w-fit px-3 rounded-2xl text-sm mb-2">
                 {room.deals} Deals
@@ -96,7 +97,7 @@ function Availabilty() {
           </div>
         </div>
 
-        <table className="w-full min-w-[600px] text-sm sm:text-base">
+        <table className="w-full text-sm sm:text-base min-w-[100%] md:min-w-[600px]">
           <thead className="bg-gray-100 text-gray-500 text-left">
             <tr>
               <th className="py-3 px-4">Room type</th>
