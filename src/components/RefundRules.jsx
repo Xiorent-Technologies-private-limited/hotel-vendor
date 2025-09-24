@@ -61,7 +61,7 @@ const RefundRules = () => {
   ];
 
   return (
-    <div className="min-h-screen  p-6">
+    <div className="w-full min-h-screen bg-white p-6">
       <div className="max-w-4xl mx-auto rounded-xl p-6">
         {/* Header */}
         <div className="flex justify-between items-center border-b border-gray-300 pb-3 mb-4">

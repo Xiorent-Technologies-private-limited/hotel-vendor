@@ -15,11 +15,12 @@ function App() {
 
 
     <BrowserRouter>
+    <div className="bg-[#f8f5e5] w-full h-full p-8 max-w-8xl min-w-[calc(80%-2rem)]">
       <Header />
       <div className="flex justify-start" >
       <Sidebar />
       {/* <DailyTraffic /> */}
-      <div className="bg-white h-full rounded-2xl p-8 max-w-8xl min-w-[calc(80%-2rem)]">
+      {/* <div className="bg-[#f8f5e5] w-full h-full p-8 max-w-8xl min-w-[calc(80%-2rem)]"> */}
         <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/rooms" element={<Rooms />} />

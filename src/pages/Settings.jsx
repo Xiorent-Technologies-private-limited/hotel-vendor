@@ -37,7 +37,7 @@ const Settings = () => {
   return (
     <div>
       <HeaderNavigation tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="mt-4">
+      <div className="min-w-5xl">
         {renderTabContent()}
       </div>
     </div>

@@ -17,7 +17,7 @@ function PaymentPie() {
 ];
 
   return (
-    <div className="bg-white rounded-2xl p-5 shadow">
+    <div className="bg-white rounded-2xl p-5">
               <h2 className="text-xl font-bold mb-4">Payout Status</h2>
               <div className="h-50">
                 <ResponsiveContainer width="100%" height="100%">

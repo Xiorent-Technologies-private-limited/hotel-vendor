@@ -21,7 +21,7 @@ function DailyTraffic() {
 ];
 
   return (
-            <div className="bg-white rounded-2xl p-5 shadow">
+            <div className="bg-white rounded-2xl p-5 ">
               <div className="flex justify-between items-center">
                 <div>
               <h2 className="text-xl font-semibold text-gray-700">Daily Traffic</h2>

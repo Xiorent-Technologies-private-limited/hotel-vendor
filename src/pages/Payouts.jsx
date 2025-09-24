@@ -10,7 +10,6 @@ import { FiCalendar, FiMoreHorizontal } from "react-icons/fi";
 import PaymentPie from "../components/PaymentPie";
 import DailyTraffic from "../components/DailyTraffic";
 
-// Sample Data
 const lineData = [
   { name: "SEP", spend: 90, earn: 50 },
   { name: "OCT", spend: 70, earn: 40 },
@@ -19,6 +18,7 @@ const lineData = [
   { name: "JAN", spend: 105, earn: 50 },
   { name: "FEB", spend: 110, earn: 55 },
 ];
+
 const payouts = [
   { name: "Monthly Earnings", date: "24 July 25", amount: "₹2,458", status: "Due" },
   { name: "Referral Bonus", date: "24 July 25", amount: "₹1,485", status: "Paid" },
@@ -29,16 +29,19 @@ const payouts = [
 
 function Payouts() {
   return (
-    <div className="w-full p-4 sm:p-6">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="w-full min-h-screen p-6 bg-[#f8f5e5]">
+      {/* Grid wrapper */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
         {/* Vendor Earnings */}
-        <div className="bg-white rounded-2xl p-5 shadow flex flex-col justify-between">
+        <div className="bg-white rounded-2xl shadow-lg p-5 flex flex-col justify-between lg:col-span-2">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <div>
               <h2 className="text-xl font-bold">Vendor Earnings</h2>
               <p className="text-2xl text-red-600 font-bold mt-2">₹37.5K</p>
-              <p className="text-gray-500">
-                Total Spent <span className="text-green-500 font-bold">+2.45%</span>
+              <p className="text-gray-600">
+                Total Spent{" "}
+                <span className="text-green-500 font-bold">+2.45%</span>
               </p>
               <p className="flex items-center gap-2 mt-1 text-green-600 font-bold font-mono">
                 <span className="w-2 h-2 rounded-full bg-green-600 inline-block"></span>
@@ -61,11 +64,13 @@ function Payouts() {
           </div>
         </div>
 
-        {/* Daily Traffic Chart */}
-        <DailyTraffic />
+        {/* Daily Traffic */}
+        <div className="bg-white rounded-2xl p-5 flex-col justify-between">
+          <DailyTraffic />
+        </div>
 
         {/* Upcoming Payouts */}
-        <div className="bg-white rounded-2xl p-5 shadow w-full overflow-x-auto">
+        <div className="bg-white rounded-2xl shadow-lg p-5 flex flex-col justify-between overflow-x-auto lg:col-span-2">
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-bold">Upcoming Payouts</h2>
             <button className="p-1 rounded-full hover:bg-gray-100">
@@ -118,7 +123,9 @@ function Payouts() {
         </div>
 
         {/* Payment Pie Chart */}
-        <PaymentPie />
+        <div className="bg-white rounded-2xl p-5 flex-col justify-between">
+          <PaymentPie />
+        </div>
       </div>
     </div>
   );

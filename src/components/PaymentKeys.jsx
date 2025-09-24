@@ -1,5 +1,6 @@
 // src/pages/PaymentKeys.jsx
 import React from "react";
+import LineChart from "./Linechart";
 import {
   MoreVertical,
   CreditCard,
@@ -10,9 +11,9 @@ import {
 
 const PaymentKeys = () => {
   const summary = [
-    { title: "Total Bookings", value: "700", note: "▲ 10% increase compared" },
-    { title: "Total Revenue", value: "₹42.5L", note: "▼ 5% decrease compared" },
-    { title: "Total Rooms", value: "452", note: "▲ +23 compared to last month" },
+    { title: "Total Bookings", value: "700", note: "▲ 10% increase compared", data: [0, 50, 35, 65], color: "green", id:123 },
+    { title: "Total Revenue", value: "₹42.5L", note: "▼ 5% decrease compared", data: [80, 45, 50, 0], color: "red", id:124 },
+    { title: "Total Rooms", value: "452", note: "▲ +23 compared to last month"}
   ];
 
   const bookingOverview = [
@@ -40,7 +41,7 @@ const PaymentKeys = () => {
   return (
     <div className="min-h-screen bg-white p-4 sm:p-6">
       <div className="max-w-6xl mx-auto space-y-6">
-        
+
         {/* Top summary cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {summary.map((s, i) => (
@@ -49,9 +50,12 @@ const PaymentKeys = () => {
                 <h3 className="text-sm font-medium text-gray-700">{s.title}</h3>
                 <MoreVertical size={16} className="text-gray-500" />
               </div>
-              <div className="mt-3">
-                <p className="text-2xl font-bold text-gray-900">{s.value}</p>
-                <p className="text-xs text-gray-600 mt-1">{s.note}</p>
+              <div className="flex justify-evenly items-center">
+                <div className="mt-3">
+                  <p className="text-2xl font-bold text-gray-900">{s.value}</p>
+                  <p className="text-xs text-gray-600 mt-1">{s.note}</p>
+                </div>
+                {s.data && s.color && <LineChart  data={s.data} color={s.color} id={s.id}/>}
               </div>
             </div>
           ))}

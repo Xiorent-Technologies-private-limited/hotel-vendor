@@ -3,7 +3,7 @@ import { FiSearch } from "react-icons/fi";
 
 function Header() {
   return (
-    <div className="w-full h-24 bg-[#f8f5e5]  px-8 ">
+    <div className="w-full h-24 bg-[#f8f5e5] px-8 ">
       <div className="flex justify-between items-center h-full">
         
         {/* Logo */}
@@ -25,7 +25,7 @@ function Header() {
 
         {/* User Section */}
         <div className="flex items-center gap-3">
-          <FaUserCircle size={24} className="text-red-700" />
+          <FaUserCircle  size={24} className="text-red-700" />
           <p className="font-medium text-red-500">Tushar</p>
         </div>
 

@@ -1,4 +1,5 @@
-import React from "react";
+
+import { useState } from "react";
 import PaymentPie from "../components/PaymentPie";
 import {
   BarChart,
@@ -8,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import DailyTraffic from "../components/DailyTraffic";
+import TodayOccupancy from "../components/TodayOccupancy";
 
 // Dummy data for occupancy and traffic
 const occupancyData = [
@@ -24,8 +26,9 @@ const occupancyData = [
 ];
 
 const Dashboard = () => {
+  const [percentage, setPercentage] = useState(60);
   return (
-    <div className="p-4 sm:p-6 bg-white min-h-screen font-sans">
+    <div className="p-4 sm:p-6 bg-[#f8f5e5] min-h-screen font-sans">
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* LEFT SIDE (2/3 width) */}
@@ -35,7 +38,7 @@ const Dashboard = () => {
             <h1 className="text-2xl sm:text-3xl font-bold text-[#5D4037]">
               Hello Tushar!
             </h1>
-            <p className="text-xs sm:text-sm text-gray-700 mt-1">
+            <p className="font-bold text-xs sm:text-sm  text-gray-700 mt-1">
               July activity{" "}
               <span className="bg-red-600 text-white px-2 py-0.5 sm:py-1 mx-1 sm:mx-2 rounded text-[10px] sm:text-xs font-medium inline-block align-middle">
                 📅 20-07-2024
@@ -53,7 +56,7 @@ const Dashboard = () => {
           </div>
 
           {/* Occupancy Statistics */}
-          <div className="bg-white p-4 rounded-lg overflow-x-auto">
+          <div className="bg-white p-5 rounded-lg shadow-lg overflow-x-auto">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
               <h3 className="text-sm font-semibold text-gray-700">
                 Occupancy Statistics
@@ -87,17 +90,18 @@ const Dashboard = () => {
           </div>
 
           {/* Today's Occupancy */}
-          <div className="bg-white p-4 rounded-lg shadow flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="bg-white p-2 rounded-lg shadow flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex flex-col items-center">
               <h3 className="text-sm font-semibold text-gray-700 mb-2 sm:mb-4">
                 Today's Occupancy
               </h3>
-              <div className="w-20 h-20 sm:w-28 sm:h-28 relative min-w-[80px] min-h-[80px]">
+              {/* <div className="w-20 h-20 sm:w-28 sm:h-28 relative min-w-[80px] min-h-[80px]">
                 <div className="w-full h-full border-8 sm:border-[10px] border-red-400 border-t-transparent border-r-transparent rounded-full transform rotate-[135deg]"></div>
                 <div className="absolute inset-0 flex items-center justify-center text-lg sm:text-xl font-bold text-red-500">
                   60%
                 </div>
-              </div>
+              </div> */}
+              <TodayOccupancy percentage={percentage} />
             </div>
             <div className="flex flex-col items-center text-xs sm:text-sm text-gray-500 w-full sm:w-auto gap-1">
               <span>Occupied Rooms</span>
