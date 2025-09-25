@@ -95,7 +95,7 @@ const Dashboard = () => {
           </div>
 
           {/* Today's Occupancy */}
-          <div className="bg-white p-3 sm:p-4 rounded-lg shadow flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="bg-white rounded-lg shadow flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex flex-col items-center flex-1">
               <h3 className="text-sm sm:text-base font-semibold text-gray-700 mb-2 sm:mb-4">
                 Today's Occupancy

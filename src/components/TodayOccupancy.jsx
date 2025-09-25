@@ -2,7 +2,7 @@ import React from "react";
 
 const TodayOccupancy = ({ 
   percentage = 60, 
-  strokeWidth = 12, 
+  strokeWidth = 10, 
   color = "#ef4444", 
   backgroundColor = "#fecaca",
   showText = true,
