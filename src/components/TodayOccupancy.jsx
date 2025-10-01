@@ -48,7 +48,7 @@ const TodayOccupancy = ({
       {/* Center Text */}
       {showText && (
         <div 
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl"
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center font-bold text-md sm:text-xl md:text-2xl lg:text-2xl"
           style={{ color: textColor }}
         >
           {percentage}%

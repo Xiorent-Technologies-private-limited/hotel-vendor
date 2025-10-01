@@ -1,4 +1,8 @@
+"use client";
+
+import React, { useEffect } from "react";
 import { FaLocationDot } from "react-icons/fa6";
+import useRoomStore from "../stores/useRoomStore";
 
 function Rooms() {
   const roomTypes = [
@@ -8,43 +12,14 @@ function Rooms() {
     { id: 4, title: "Sharing Rooms", deals: 2, available: "2/35", price: "₹2,568" },
   ];
 
-  const hotels = [
-    {
-      id: 1,
-      name: "Sri Ranganadha Nilayam",
-      location: "Srirangam, Tiruchirappalli, Tamil Nadu, India",
-      amenities: "Wifi • AC • Heating • CCTV • Parking • Housekeeping • Pet Friendly",
-      rating: 4.2,
-      reviews: 7,
-      price: "₹3,000",
-      image: "/roompage1.png",
-    },
-    {
-      id: 2,
-      name: "Amritha Homestay",
-      location: "Srirangam, Tiruchirappalli, Tamil Nadu, India",
-      amenities: "Wifi • AC • Heating • CCTV • Parking • Housekeeping • Pet Friendly",
-      rating: 4.6,
-      reviews: 14,
-      price: "₹2,440",
-      image: "/roompage2.png",
-    },
-    {
-      id: 3,
-      name: "Heritage Stay",
-      location: "Thanjavur, Tamil Nadu, India",
-      amenities: "Wifi • Restaurant • Terrace • Garden • Shuttle Service • Cultural Experience",
-      rating: 3.9,
-      reviews: 312,
-      price: "₹3,600",
-      image: "/roompage3.png",
-    },
-  ];
+  const { getRooms, rooms } = useRoomStore();
+
+  useEffect(() => {
+    getRooms();
+  }, [getRooms]);
 
   return (
     <div className="p-4 sm:p-6">
-      <h2 className="text-xl sm:text-2xl text-red-500 font-semibold mb-4">Rooms</h2>
-
       {/* Room type cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {roomTypes.map((room) => (
@@ -68,44 +43,55 @@ function Rooms() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Hotels Section */}
         <div className="lg:col-span-3 space-y-4">
-          {hotels.map((hotel) => (
+          {rooms.map((room) => (
             <div
-              key={hotel.id}
+              key={room._id}
               className="bg-white rounded-2xl shadow-lg flex flex-col sm:flex-row p-4 gap-4"
             >
               <img
-                src={hotel.image}
-                alt={hotel.name}
+                src={room.images?.[0] || "/roompage1.png"}
+                alt={room.hotelId?.name || "Hotel"}
                 className="rounded-lg w-full sm:w-40 h-40 sm:h-32 object-cover"
               />
               <div className="flex flex-col justify-between w-full">
                 <div>
-                  <h3 className="font-semibold text-lg sm:text-xl">{hotel.name}</h3>
+                  {/* ✅ Name */}
+                  <h3 className="font-semibold text-lg sm:text-xl">
+                    {room.hotelId?.name || "Unknown Hotel"}
+                  </h3>
+
+                  {/* ✅ Location */}
                   <p className="text-sm sm:text-base flex items-center gap-2 text-gray-800">
                     <FaLocationDot className="text-red-500" />
-                    {hotel.location}
+                    {room.hotelId?.location?.city || "Location not available"}
                   </p>
-                  <p className="text-xs sm:text-sm text-gray-500 mt-1">{hotel.amenities}</p>
+
+                  {/* ✅ Amenities */}
+                  <p className="text-xs sm:text-sm text-gray-500 mt-1">
+                    {room.amenities?.join(" • ") || "No amenities listed"}
+                  </p>
                 </div>
 
+                {/* Buttons */}
                 <div className="mt-3 mb-2 flex flex-wrap gap-3">
                   <button className="px-3 sm:px-4 rounded-xl py-1 text-emerald-600 bg-emerald-200/50 text-sm sm:text-base">
                     Available
                   </button>
                   <button className="px-3 sm:px-4 rounded-xl py-1 text-red-600 bg-red-200/50 text-sm sm:text-base">
-                    Available
+                    Book Now
                   </button>
                 </div>
 
+                {/* ✅ Rating + Price */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="flex items-center gap-1 text-sm sm:text-base text-black">
-                    <span>{hotel.rating}</span>
+                    <span>{room.hotelId?.rating?.average || "N/A"}</span>
                     <span className="text-gray-500 text-xs sm:text-sm">
-                      ({hotel.reviews} Reviews)
+                      ({room.hotelId?.rating?.totalReviews || 0} Reviews)
                     </span>
                   </div>
                   <p className="font-bold text-lg sm:text-2xl">
-                    {hotel.price}{" "}
+                    ₹{room.basePrice}{" "}
                     <span className="text-gray-500 text-sm sm:text-lg font-medium">
                       Onwards
                     </span>

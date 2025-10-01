@@ -16,7 +16,7 @@ function SideBar() {
   const menuItems = [
     { name: "Dashboard", icon: <MdDashboard size={22} />, path: "/" },
     { name: "Rooms", icon: <MdMeetingRoom size={22} />, path: "/rooms" },
-    { name: "Availability & Pricing", icon: <FaTags size={22} />, path: "/availabilty" },
+    { name: "Availability & Pricing", icon: <FaTags size={22} />, path: "/availability" },
     { name: "Booking", icon: <RiBook2Fill size={22} />, path: "/bookings" },
     { name: "Payouts", icon: <MdPayments size={22} />, path: "/payouts" },
     { name: "Settings", icon: <MdSettings size={22} />, path: "/settings" },
