@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useBookingStore from "../stores/useBookingStore";
 import { FiSearch, FiFilter, FiCheckCircle, FiXCircle } from "react-icons/fi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-const bookings = [
-  { id: "#SN192MB5H9G", name: "Aarav", contact: "6789432156", amount: "₹2000", status: "Paid" },
-  { id: "#SN192MB5H9G", name: "Parmesh", contact: "1234567890", amount: "₹2500", status: "Due" },
-  { id: "#SN192MB5H9G", name: "Mohan", contact: "9876543210", amount: "₹2000", status: "Paid" },
-  { id: "#SN192MB5H9G", name: "Cecil", contact: "5551234567", amount: "₹3000", status: "Paid" },
-];
+// const bookings = [
+//   { id: "#SN192MB5H9G", name: "Aarav", contact: "6789432156", amount: "₹2000", status: "Paid" },
+//   { id: "#SN192MB5H9G", name: "Parmesh", contact: "1234567890", amount: "₹2500", status: "Due" },
+//   { id: "#SN192MB5H9G", name: "Mohan", contact: "9876543210", amount: "₹2000", status: "Paid" },
+//   { id: "#SN192MB5H9G", name: "Cecil", contact: "5551234567", amount: "₹3000", status: "Paid" },
+// ];
 
 function Booking() {
+  const { getBooking, bookings } = useBookingStore();
+  useEffect(() => {
+    getBooking();
+  }, []);
   return (
     <div className="p-4 sm:p-6 bg-white rounded-2xl shadow-lg w-full">
-      
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between gap-3 mb-6">
         <h1 className="text-xl sm:text-2xl font-bold text-red-600">Booking</h1>
@@ -51,19 +56,20 @@ function Booking() {
           <tbody>
             {bookings.map((b, i) => (
               <tr key={i} className="border-b">
-                <td className="py-2 px-4">{b.id}</td>
-                <td className="py-2 px-4">{b.name}</td>
-                <td className="py-2 px-4">{b.contact}</td>
-                <td className="py-2 px-4">24 July 25</td>
-                <td className="py-2 px-4">28 July 25</td>
-                <td className="py-2 px-4 font-semibold">{b.amount}</td>
+                <td className="py-2 px-4">{b._id}</td>
+                <td className="py-2 px-4">{b.guestDetails?.firstName}</td>
+                <td className="py-2 px-4">{b.guestDetails?.phone}</td>
+                <td className="py-2 px-4">{new Date(b.dates?.checkIn).toLocaleDateString()}</td>
+                <td className="py-2 px-4">{new Date(b.dates?.checkOut).toLocaleDateString()}</td>
+                <td className="py-2 px-4 font-semibold">₹{b.pricing?.totalAmount}</td>
                 <td className="py-2 px-4">
                   <span
-                    className={`px-2 py-1 rounded-full text-xs sm:text-sm font-medium ${
-                      b.status === "Paid" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
-                    }`}
+                    className={`px-2 py-1 rounded-full text-xs sm:text-sm font-medium ${b.status === "paid" || b.paymentStatus === "paid"
+                        ? "bg-green-100 text-green-600"
+                        : "bg-red-100 text-red-600"
+                      }`}
                   >
-                    {b.status}
+                    {b.paymentStatus}
                   </span>
                 </td>
                 <td className="py-2 px-4 flex gap-2">
@@ -73,20 +79,20 @@ function Booking() {
                 </td>
               </tr>
             ))}
+
           </tbody>
         </table>
       </div>
 
       {/* Card View for small screens */}
       <div className="sm:hidden flex flex-col gap-4">
-        {bookings.map((b, i) => (
-          <div key={i} className="bg-gray-50 p-4 rounded-lg shadow flex flex-col gap-2">
+        {bookings.map((b) => (
+          <div key={b._id} className="bg-gray-50 p-4 rounded-lg shadow flex flex-col gap-2">
             <div className="flex justify-between items-center">
-              <span className="font-bold">{b.name}</span>
+              <span className="font-bold">{b.guestDetails.firstName}</span>
               <span
-                className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  b.status === "Paid" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
-                }`}
+                className={`px-2 py-1 rounded-full text-xs font-medium ${b.status === "Paid" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
+                  }`}
               >
                 {b.status}
               </span>
